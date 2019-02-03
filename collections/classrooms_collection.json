@@ -1,0 +1,22 @@
+{
+  "name": "classrooms",
+  "fields": [
+    {
+      "name": "name",
+      "title": "Name",
+      "required": true,
+      "exportable": true
+    },
+    {
+      "name": "description",
+      "title": "Description",
+      "exportable": true,
+      "show_in_dataview": false
+    }
+  ],
+  "owner_field": "ownerId",
+
+  "roles_allowed_to_read": ["owner"],
+  "roles_allowed_to_update": ["owner"],
+  "roles_allowed_to_delete": ["owner"]
+}

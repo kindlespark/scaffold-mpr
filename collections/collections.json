@@ -1,0 +1,16 @@
+{
+  "collections": [
+    {
+      "$import": "activitys_collection.json"
+    },
+    {
+      "$import": "classrooms_collection.json"
+    },
+    {
+      "$import": "students_collection.json"
+    },
+    {
+      "$import": "student_journals_collection.json"
+    }
+  ]
+}

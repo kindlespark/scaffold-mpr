@@ -1,0 +1,42 @@
+{
+  "name": "user_settings",
+  "pages": [
+    {
+      "name": "profile",
+      "components": [
+        {
+          "name": "edit_form",
+          "type": "form",
+          "mode": "update",
+          "title": "Edit your profile",
+          "submit_route": "user_settings.profile",
+          "query_name": "current_user_data",
+          "fields": [
+            { "name": "profile.name", "title": "Name", "required": true },
+            { "name": "profile.facebook", "title": "Facebook URL" },
+            { "name": "profile.google", "title": "Google+ URL" },
+            { "name": "profile.twitter", "title": "Twitter ID" },
+            { "name": "profile.website", "title": "Website URL" }
+          ]
+        }
+      ]
+    },
+
+    { "name": "change_pass", "template": "change_pass" }
+  ],
+
+  "components": [
+    {
+      "name": "side_menu",
+      "type": "menu",
+      "class": "nav nav-stacked nav-pills",
+      "items": [
+        { "title": "Profile", "route": "user_settings.profile" },
+        {
+          "title": "Change password",
+          "route": "user_settings.change_pass"
+        }
+      ]
+    }
+  ]
+}

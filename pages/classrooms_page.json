@@ -1,0 +1,66 @@
+{
+  "name": "classrooms",
+  "components": [
+    {
+      "name": "view",
+      "type": "data_view",
+      "title": "Classrooms",
+      "text_if_empty": "No classrooms :(",
+      "query_name": "classroom_list",
+      "page_size": 20,
+      "insert_route": "classrooms.insert",
+      "edit_route": "classrooms.edit",
+      "edit_route_params": [{ "name": "classroomId", "value": "this._id" }],
+      "details_route": "classrooms.details",
+      "details_route_params": [{ "name": "classroomId", "value": "this._id" }]
+    }
+  ],
+
+  "pages": [
+    {
+      "name": "insert",
+      "components": [
+        {
+          "name": "insert_form",
+          "type": "form",
+          "mode": "insert",
+          "title": "New classroom",
+          "query_name": "classrooms_empty",
+          "submit_route": "classrooms",
+          "cancel_route": "classrooms"
+        }
+      ]
+    },
+    {
+      "name": "details",
+      "route_params": ["classroomId"],
+      "components": [
+        {
+          "name": "details_form",
+          "type": "form",
+          "mode": "read_only",
+          "title": "Details",
+          "query_name": "classroom_details",
+          "close_route": "classrooms",
+          "back_route": "classrooms"
+        }
+      ]
+    },
+
+    {
+      "name": "edit",
+      "route_params": ["classroomId"],
+      "components": [
+        {
+          "name": "edit_form",
+          "type": "form",
+          "mode": "update",
+          "title": "Edit classroom",
+          "submit_route": "classrooms",
+          "cancel_route": "classrooms",
+          "query_name": "classroom_details"
+        }
+      ]
+    }
+  ]
+}

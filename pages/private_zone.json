@@ -1,0 +1,56 @@
+{
+  "private_zone": {
+    "pages": [
+      {
+        "name": "home_private",
+        "title": "Welcome {{userFullName}}!",
+        "text": "Place for dashboard here..."
+      },
+
+      {
+        "$import": "classrooms_page.json"
+      },
+      {
+        "$import": "activitys_page.json"
+      },
+      {
+        "$import": "students_page.json"
+      },
+      {
+        "$import": "user_settings_page.json"
+      },
+
+      { "name": "logout", "template": "logout" }
+    ],
+
+    "components": [
+      {
+        "name": "left_menu",
+        "type": "menu",
+        "class": "nav navbar-nav",
+        "dest_selector": "#menu",
+        "items": [
+          { "title": "Home", "route": "home_private" },
+          { "title": "Students", "route": "students" },
+          { "title": "Classrooms", "route": "classrooms" },
+          { "title": "Activities", "route": "activitys" }
+        ]
+      },
+      {
+        "name": "right_menu",
+        "type": "menu",
+        "class": "nav navbar-nav navbar-right",
+        "dest_selector": "#menu",
+        "items": [
+          {
+            "title": "{{userEmail}}",
+            "items": [
+              { "title": "Settings", "route": "user_settings" },
+              { "title": "Logout", "route": "logout" }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

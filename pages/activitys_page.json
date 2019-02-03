@@ -1,0 +1,66 @@
+{
+  "name": "activitys",
+  "components": [
+    {
+      "name": "view",
+      "type": "data_view",
+      "title": "Activitys",
+      "text_if_empty": "No activitys :(",
+      "query_name": "activity_list",
+      "page_size": 20,
+      "insert_route": "activitys.insert",
+      "edit_route": "activitys.edit",
+      "edit_route_params": [{ "name": "activityId", "value": "this._id" }],
+      "details_route": "activitys.details",
+      "details_route_params": [{ "name": "activityId", "value": "this._id" }]
+    }
+  ],
+
+  "pages": [
+    {
+      "name": "insert",
+      "components": [
+        {
+          "name": "insert_form",
+          "type": "form",
+          "mode": "insert",
+          "title": "New activity",
+          "query_name": "activitys_empty",
+          "submit_route": "activitys",
+          "cancel_route": "activitys"
+        }
+      ]
+    },
+    {
+      "name": "details",
+      "route_params": ["activityId"],
+      "components": [
+        {
+          "name": "details_form",
+          "type": "form",
+          "mode": "read_only",
+          "title": "Details",
+          "query_name": "activity_details",
+          "close_route": "activitys",
+          "back_route": "activitys"
+        }
+      ]
+    },
+
+    {
+      "name": "edit",
+      "route_params": ["activityId"],
+      "components": [
+        {
+          "name": "edit_form",
+          "type": "form",
+          "mode": "update",
+          "title": "Edit activity",
+          "submit_route": "activitys",
+          "cancel_route": "activitys",
+          "query_name": "activity_details"
+        }
+      ]
+    }
+  ]
+}

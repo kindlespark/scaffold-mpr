@@ -1,0 +1,147 @@
+{
+  "name": "students",
+  "components": [
+    {
+      "name": "view",
+      "type": "data_view",
+      "title": "Students",
+      "text_if_empty": "No students :(",
+      "query_name": "student_list",
+      "page_size": 20,
+      "insert_route": "students.insert",
+      "edit_route": "students.edit",
+      "edit_route_params": [{ "name": "studentId", "value": "this._id" }],
+      "details_route": "students.details",
+      "details_route_params": [{ "name": "studentId", "value": "this._id" }]
+    }
+  ],
+
+  "pages": [
+    {
+      "name": "insert",
+      "components": [
+        {
+          "name": "insert_form",
+          "type": "form",
+          "mode": "insert",
+          "title": "New invoice",
+
+          "query_name": "students_empty",
+
+          "submit_route": "students.details",
+          "submit_route_params": [{ "name": "studentId", "value": "result" }],
+          "cancel_route": "students"
+        }
+      ]
+    },
+    {
+      "name": "details",
+      "template": "page_subcontent_tabnav",
+      "route_params": ["studentId"],
+      "components": [
+        {
+          "name": "details_form",
+          "type": "form",
+          "mode": "read_only",
+          "title": "Student details",
+          "layout": "horizontal",
+          "query_name": "student_details",
+          "back_route": "students"
+        }
+      ],
+
+      "render_subpages": "always",
+      "pages": [
+        {
+          "name": "items",
+          "components": [
+            {
+              "name": "view",
+              "type": "data_view",
+              "text_if_empty": "No items",
+              "query_name": "student_journals",
+              "page_size": 20,
+              "insert_button_title": "Add item",
+              "insert_route": "students.details.insert",
+              "insert_route_params": [
+                { "name": "studentId", "value": "this.params.studentId" }
+              ],
+              "edit_route": "students.details.edit",
+              "edit_route_params": [
+                {
+                  "name": "studentId",
+                  "value": "UI._parentData(1).params.studentId"
+                },
+                { "name": "journalId", "value": "this._id" }
+              ]
+            }
+          ]
+        },
+
+        {
+          "name": "insert",
+          "components": [
+            {
+              "name": "insert_form",
+              "type": "form",
+              "mode": "insert",
+              "title": "Add item",
+              "query_name": "student_journals_empty",
+
+              "hidden_fields": [
+                { "name": "studentId", "value": "this.params.studentId" }
+              ],
+
+              "submit_route": "students.details",
+              "submit_route_params": [
+                { "name": "studentId", "value": "this.params.studentId" }
+              ],
+              "cancel_route": "students.details",
+              "cancel_route_params": [
+                { "name": "studentId", "value": "this.params.studentId" }
+              ]
+            }
+          ]
+        },
+
+        {
+          "name": "edit",
+          "route_params": ["journalId"],
+          "components": [
+            {
+              "name": "edit_form",
+              "type": "form",
+              "mode": "update",
+              "title": "Edit item",
+              "query_name": "student_journal",
+              "submit_route": "students.details",
+              "submit_route_params": [
+                { "name": "studentId", "value": "this.params.studentId" }
+              ],
+              "cancel_route": "students.details",
+              "cancel_route_params": [
+                { "name": "studentId", "value": "this.params.studentId" }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "name": "edit",
+      "route_params": ["studentId"],
+      "components": [
+        {
+          "name": "edit_form",
+          "type": "form",
+          "mode": "update",
+          "title": "Edit invoice",
+          "submit_route": "students",
+          "cancel_route": "students",
+          "query_name": "student_details"
+        }
+      ]
+    }
+  ]
+}
