@@ -11,6 +11,9 @@
     },
     {
       "$import": "student_journals_collection.json"
+    },
+    {
+      "$import": "teachers_collection.json"
     }
   ]
 }

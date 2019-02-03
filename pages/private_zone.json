@@ -19,6 +19,9 @@
       {
         "$import": "user_settings_page.json"
       },
+      {
+        "$import": "teachers_page.json"
+      },
 
       { "name": "logout", "template": "logout" }
     ],
@@ -33,7 +36,8 @@
           { "title": "Home", "route": "home_private" },
           { "title": "Students", "route": "students" },
           { "title": "Classrooms", "route": "classrooms" },
-          { "title": "Activities", "route": "activitys" }
+          { "title": "Activities", "route": "activitys" },
+          { "title": "Teachers", "route": "teachers" }
         ]
       },
       {
