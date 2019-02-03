@@ -1,0 +1,610 @@
+{
+	"application": {
+		"title": "MPR v0.0.0.12",
+
+		"theme": "bootswatch-united",
+
+		"collections": [
+			{
+				"name": "activitys",
+				"fields": [
+					{ "name": "activity", "title": "Activity", "required": true, "exportable": true },
+					{ "name": "subject", "title": "Subject", "exportable": true, "show_in_dataview": true },
+					{ "name": "category", "title": "Category", "exportable": true, "show_in_dataview": true }
+				
+				]
+			},
+
+			{
+				"name": "classrooms",
+				"fields": [
+					{ "name": "name", "title": "Name", "required": true, "exportable": true },
+					{ "name": "description", "title": "Description", "exportable": true, "show_in_dataview": false }
+				],
+				"owner_field": "ownerId",
+
+				"roles_allowed_to_read": ["owner"],
+				"roles_allowed_to_update": ["owner"],
+				"roles_allowed_to_delete": ["owner"]
+
+			},
+
+			{
+				"name": "students",
+				"fields": [
+					{ "name": "studentNumber", "title": "Student Number", "default": "", "required": true, "exportable": true },
+					{ "name": "firstName", "title": "First Name", "default": "", "required": true, "exportable": true },
+					{ "name": "middleName", "title": "Middle Name", "default": "", "required": false, "exportable": true },
+					{ "name": "lastName", "title": "Last Name", "default": "", "required": true, "exportable": true },
+					{ "name": "birthDate", "title": "Birth date", "type": "date", "format": "MM-DD-YYYY", "input": "datepicker", "default": "today", "required": true, "exportable": true },
+
+					{
+						"name": "classroomId",
+						"title": "Classroom",
+						"required": true,
+						"input": "select",
+						"lookup_query_name": "classroom_list",
+						"lookup_field": "name",
+						"lookup_key": "_id",
+						"show_in_dataview": false,
+						"show_in_read_only_form": false,
+						"exportable": false,
+
+						"join_collection": "classrooms",
+						"join_fields": ["name"],
+						"join_container": "classroom"
+					},
+
+					{
+						"name": "classroom.name",
+						"title": "Classroom",
+						"show_in_insert_form": false,
+						"show_in_update_form": false,
+						"exportable": true
+					}
+
+				],
+
+				"owner_field": "ownerId",
+				"roles_allowed_to_read": ["owner"],
+				"roles_allowed_to_update": ["owner"],
+				"roles_allowed_to_delete": ["owner"]
+
+				},
+
+			{
+				"name": "student_journals",
+				"fields": [
+					{ "name": "subject", "title": "Subject", "required": true, "exportable": true },
+					{
+						"name": "activityId",
+						"title": "Activity",
+						"required": true,
+						"input": "select",
+						"lookup_query_name": "activity_list",
+						"lookup_field": "activity",
+						"lookup_key": "_id",
+						"show_in_dataview": false,
+						"show_in_read_only_form": false,
+						"exportable": false,
+
+						"join_collection": "activitys",
+						"join_fields": ["activity"],
+						"join_container": "activity"
+					},
+					{ "name": "activityDate", "title": "Activity Date", "type": "date", "format": "MM-DD-YYYY", "input": "datepicker", "default": "today", "required": true, "exportable": true },
+					{ "name": "note", "title": "Note", "required": false, "exportable": true }
+				],
+				"owner_field": "ownerId",
+
+				"roles_allowed_to_read": ["owner"],
+				"roles_allowed_to_update": ["owner"],
+				"roles_allowed_to_delete": ["owner"]
+
+			}
+		],
+
+		"queries": [
+			{
+				"name": "classroom_list",
+				"collection": "classrooms",
+				"filter": "{}",
+				"options": "{  \"sort\": { \"name\": 1 } }"
+			},
+			{
+				"name": "classrooms_empty",
+				"collection": "classrooms",
+				"filter": "{\"_id\": null}",
+				"find_one": true
+			},
+			{
+				"name": "classroom_details",
+				"collection": "classrooms",
+				"find_one": true,
+				"filter": "{ \"_id\": \":classroomId\" }",
+				"options": "{}"
+			},
+			{
+				"name": "activity_list",
+				"collection": "activitys",
+				"filter": "{}",
+				"options": "{  \"sort\": { \"activity\": 1 } }"
+			},
+			{
+				"name": "activitys_empty",
+				"collection": "activitys",
+				"filter": "{\"_id\": null}",
+				"find_one": true
+			},
+			{
+				"name": "activity_details",
+				"collection": "activitys",
+				"find_one": true,
+				"filter": "{ \"_id\": \":activityId\" }",
+				"options": "{}"
+			},
+			{
+				"name": "student_list",
+				"collection": "students",
+				"filter": {},
+				"options": "{ \"sort\": { \"studentNumber\": -1 } }"
+			},
+			{
+				"name": "students_empty",
+				"collection": "students",
+				"filter": "{ \"_id\": null }",
+				"options": "{}",
+				"find_one": true
+			},
+			{
+				"name": "student_details",
+				"collection": "students",
+				"filter": "{ \"_id\": \":studentId\" }",
+				"find_one": true
+			},
+			{
+				"name": "student_journals",
+				"collection": "student_journals",
+				"filter": "{ \"studentId\": \":studentId\" }"
+			},
+			{
+				"name": "student_journals_empty",
+				"collection": "student_journals",
+				"filter": "{ \"_id\": null }",
+				"find_one": true
+			},
+			{
+				"name": "student_journal",
+				"collection": "student_journals",
+				"filter": "{ \"_id\": \":journalId\" }",
+				"find_one": true
+			},
+			{
+				"name": "current_user_data",
+				"collection": "users",
+				"filter": "{ \"_id\": \"Meteor.userId()\" }",
+				"find_one": true
+			}
+		],
+
+		"public_zone": {
+			"pages": [
+				{ 
+					"name": "home_public", 
+					"title": "", 
+					"components": [
+						{
+							"name": "home_jumbotron",
+							"title": "Example application",
+							"type": "jumbotron",
+							"text": "<b>This <a href=\"https://www.meteor.com\" target=\"_blank\">Meteor</a> application is made with <a href=\"http://www.meteorkitchen.com\" target=\"_blank\">meteor-kitchen</a> without manual coding.</b><br />It shows how to work with DataViews, Forms with dates and lookup fields, master-detail relations etc.<br />Source code (input file for generator) is <a href=\"https://github.com/perak/kitchen-examples/tree/master/example-students\" target=\"_blank\">here</a>.",
+							"button_title": "Continue &raquo;",
+							"button_route": "login"
+						}
+					]
+				},
+				{ "name": "login", "template": "login" },
+				{ "name": "register", "template": "register" },
+				{ "name": "forgot_password", "template": "forgot_password" },
+				{ "name": "reset_password", "template": "reset_password", "route_params": ["resetPasswordToken"] }
+			],
+
+			"components": [
+				{
+					"name": "left_menu",
+					"type": "menu",
+					"class": "nav navbar-nav",
+					"dest_selector": "#menu",
+					"items": [
+						{ "title": "Home", "route": "home_public" }
+					]
+				},
+
+				{
+					"name": "right_menu",
+					"type": "menu",
+					"class": "nav navbar-nav navbar-right",
+					"dest_selector": "#menu",
+					"items": [
+						{ "title": "Register", "route": "register" },
+						{ "title": "Login", "route": "login" }
+					]
+				}
+			]
+		},
+
+		"private_zone": {
+			"pages": [
+				{
+					"name": "home_private",
+					"title": "Welcome {{userFullName}}!",
+					"text": "Place for dashboard here..."
+				},
+
+				{
+					"name": "classrooms",
+					"components": [
+						{
+							"name": "view",
+							"type": "data_view",
+							"title": "Classrooms",
+							"text_if_empty": "No classrooms :(",
+							"query_name": "classroom_list",
+							"page_size": 20,
+							"insert_route": "classrooms.insert",
+							"edit_route": "classrooms.edit",
+							"edit_route_params": [
+								{ "name": "classroomId", "value": "this._id" }
+							],
+							"details_route": "classrooms.details",
+							"details_route_params": [
+								{ "name": "classroomId", "value": "this._id" }
+							]
+						}
+					],
+
+					"pages": [
+						{
+							"name": "insert",
+							"components": [
+								{
+									"name": "insert_form",
+									"type": "form",
+									"mode": "insert",
+									"title": "New classroom",
+									"query_name": "classrooms_empty",
+									"submit_route": "classrooms",
+									"cancel_route": "classrooms"
+								}
+							]
+						},
+						{
+							"name": "details",
+							"route_params": ["classroomId"],
+							"components": [
+								{
+									"name": "details_form",
+									"type": "form",
+									"mode": "read_only",
+									"title": "Details",
+									"query_name": "classroom_details",
+									"close_route": "classrooms",
+									"back_route": "classrooms"
+								}
+							]
+						},
+
+						{
+							"name": "edit",
+							"route_params": ["classroomId"],
+							"components": [
+								{
+									"name": "edit_form",
+									"type": "form",
+									"mode": "update",
+									"title": "Edit classroom",
+									"submit_route": "classrooms",
+									"cancel_route": "classrooms",
+									"query_name": "classroom_details"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "activitys",
+					"components": [
+						{
+							"name": "view",
+							"type": "data_view",
+							"title": "Activitys",
+							"text_if_empty": "No activitys :(",
+							"query_name": "activity_list",
+							"page_size": 20,
+							"insert_route": "activitys.insert",
+							"edit_route": "activitys.edit",
+							"edit_route_params": [
+								{ "name": "activityId", "value": "this._id" }
+							],
+							"details_route": "activitys.details",
+							"details_route_params": [
+								{ "name": "activityId", "value": "this._id" }
+							]
+						}
+					],
+
+					"pages": [
+						{
+							"name": "insert",
+							"components": [
+								{
+									"name": "insert_form",
+									"type": "form",
+									"mode": "insert",
+									"title": "New activity",
+									"query_name": "activitys_empty",
+									"submit_route": "activitys",
+									"cancel_route": "activitys"
+								}
+							]
+						},
+						{
+							"name": "details",
+							"route_params": ["activityId"],
+							"components": [
+								{
+									"name": "details_form",
+									"type": "form",
+									"mode": "read_only",
+									"title": "Details",
+									"query_name": "activity_details",
+									"close_route": "activitys",
+									"back_route": "activitys"
+								}
+							]
+						},
+
+						{
+							"name": "edit",
+							"route_params": ["activityId"],
+							"components": [
+								{
+									"name": "edit_form",
+									"type": "form",
+									"mode": "update",
+									"title": "Edit activity",
+									"submit_route": "activitys",
+									"cancel_route": "activitys",
+									"query_name": "activity_details"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "students",
+					"components": [
+						{
+							"name": "view",
+							"type": "data_view",
+							"title": "Students",
+							"text_if_empty": "No students :(",
+							"query_name": "student_list",
+							"page_size": 20,
+							"insert_route": "students.insert",
+							"edit_route": "students.edit",
+							"edit_route_params": [
+								{ "name": "studentId", "value": "this._id" }
+							],
+							"details_route": "students.details",
+							"details_route_params": [
+								{ "name": "studentId", "value": "this._id" }
+							]
+						}
+					],
+
+					"pages": [
+						{
+							"name": "insert",
+							"components": [
+								{
+									"name": "insert_form",
+									"type": "form",
+									"mode": "insert",
+									"title": "New invoice",
+
+									"query_name": "students_empty",
+
+									"submit_route": "students.details",
+									"submit_route_params": [
+										{ "name": "studentId", "value": "result"}
+									],
+									"cancel_route": "students"
+								}
+							]
+						},
+						{
+							"name": "details",
+							"template": "page_subcontent_tabnav",
+							"route_params": ["studentId"],
+							"components": [
+								{
+									"name": "details_form",
+									"type": "form",
+									"mode": "read_only",
+									"title": "Student details",
+									"layout": "horizontal",
+									"query_name": "student_details",
+									"back_route": "students"
+								}
+
+							],
+
+							"render_subpages": "always",
+							"pages": [
+								{
+									"name": "items",
+									"components": [
+										{
+											"name": "view",
+											"type": "data_view",
+											"text_if_empty": "No items",
+											"query_name": "student_journals",
+											"page_size": 20,
+											"insert_button_title": "Add item",
+											"insert_route": "students.details.insert",
+											"insert_route_params": [
+												{ "name": "studentId", "value": "this.params.studentId" }
+											],
+											"edit_route": "students.details.edit",
+											"edit_route_params": [
+												{ "name": "studentId", "value": "UI._parentData(1).params.studentId" },
+												{ "name": "journalId", "value": "this._id" }
+											]
+										}
+									]
+								},
+
+								{
+									"name": "insert",
+									"components": [										
+										{
+											"name": "insert_form",
+											"type": "form",
+											"mode": "insert",
+											"title": "Add item",
+											"query_name": "student_journals_empty",
+
+											"hidden_fields": [
+												{ "name": "studentId", "value": "this.params.studentId" }
+											],
+
+											"submit_route": "students.details",
+											"submit_route_params": [
+												{ "name": "studentId", "value": "this.params.studentId"}
+											],
+											"cancel_route": "students.details",
+											"cancel_route_params": [
+												{ "name": "studentId", "value": "this.params.studentId"}
+											]
+										}
+									]
+								},
+
+								{
+									"name": "edit",
+									"route_params": ["journalId"],
+									"components": [
+										{
+											"name": "edit_form",
+											"type": "form",
+											"mode": "update",
+											"title": "Edit item",
+											"query_name": "student_journal",
+											"submit_route": "students.details",
+											"submit_route_params": [
+												{ "name": "studentId", "value": "this.params.studentId"}
+											],
+											"cancel_route": "students.details",
+											"cancel_route_params": [
+												{ "name": "studentId", "value": "this.params.studentId"}
+											]
+										}
+									]
+								}
+							]
+						},
+
+						{
+							"name": "edit",
+							"route_params": ["studentId"],
+							"components": [
+								{
+									"name": "edit_form",
+									"type": "form",
+									"mode": "update",
+									"title": "Edit invoice",
+									"submit_route": "students",
+									"cancel_route": "students",
+									"query_name": "student_details"
+								}
+							]
+						}
+					]
+				},
+
+				{
+					"name": "user_settings",
+					"pages": [
+						{
+							"name": "profile",
+							"components": [
+								{
+									"name": "edit_form",
+									"type": "form",
+									"mode": "update",
+									"title": "Edit your profile",
+									"submit_route": "user_settings.profile",
+									"query_name": "current_user_data",
+									"fields": [
+										{ "name": "profile.name", "title": "Name", "required": true },
+										{ "name": "profile.facebook", "title": "Facebook URL" },
+										{ "name": "profile.google", "title": "Google+ URL" },
+										{ "name": "profile.twitter", "title": "Twitter ID" },
+										{ "name": "profile.website", "title": "Website URL" }
+									]
+								}
+							]
+						},
+
+						{ "name": "change_pass", "template": "change_pass" }
+					],
+
+					"components": [
+						{
+							"name": "side_menu",
+							"type": "menu",
+							"class": "nav nav-stacked nav-pills",
+							"items": [
+								{ "title": "Profile", "route": "user_settings.profile" },
+								{ "title": "Change password", "route": "user_settings.change_pass" }
+							]
+						}
+					]
+				},
+
+				{ "name": "logout", "template": "logout" }
+			],
+
+			"components": [
+				{
+					"name": "left_menu",
+					"type": "menu",
+					"class": "nav navbar-nav",
+					"dest_selector": "#menu",
+					"items": [
+						{ "title": "Home", "route": "home_private" },
+						{ "title": "Students", "route": "students" },
+						{ "title": "Classrooms", "route": "classrooms" },
+						{ "title": "Activities", "route": "activitys" }
+					]
+				},
+				{
+					"name": "right_menu",
+					"type": "menu",
+					"class": "nav navbar-nav navbar-right",
+					"dest_selector": "#menu",
+					"items": [
+						{ 
+							"title": "{{userEmail}}",
+							"items": [
+								{ "title": "Settings", "route": "user_settings" },
+								{ "title": "Logout", "route": "logout" }
+							]
+						}
+					]
+				}
+			]
+		}
+	}
+}
