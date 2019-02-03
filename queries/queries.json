@@ -1,0 +1,84 @@
+{
+  "queries": [
+    {
+      "name": "classroom_list",
+      "collection": "classrooms",
+      "filter": "{}",
+      "options": "{  \"sort\": { \"name\": 1 } }"
+    },
+    {
+      "name": "classrooms_empty",
+      "collection": "classrooms",
+      "filter": "{\"_id\": null}",
+      "find_one": true
+    },
+    {
+      "name": "classroom_details",
+      "collection": "classrooms",
+      "find_one": true,
+      "filter": "{ \"_id\": \":classroomId\" }",
+      "options": "{}"
+    },
+    {
+      "name": "activity_list",
+      "collection": "activitys",
+      "filter": "{}",
+      "options": "{  \"sort\": { \"activity\": 1 } }"
+    },
+    {
+      "name": "activitys_empty",
+      "collection": "activitys",
+      "filter": "{\"_id\": null}",
+      "find_one": true
+    },
+    {
+      "name": "activity_details",
+      "collection": "activitys",
+      "find_one": true,
+      "filter": "{ \"_id\": \":activityId\" }",
+      "options": "{}"
+    },
+    {
+      "name": "student_list",
+      "collection": "students",
+      "filter": {},
+      "options": "{ \"sort\": { \"studentNumber\": -1 } }"
+    },
+    {
+      "name": "students_empty",
+      "collection": "students",
+      "filter": "{ \"_id\": null }",
+      "options": "{}",
+      "find_one": true
+    },
+    {
+      "name": "student_details",
+      "collection": "students",
+      "filter": "{ \"_id\": \":studentId\" }",
+      "find_one": true
+    },
+    {
+      "name": "student_journals",
+      "collection": "student_journals",
+      "filter": "{ \"studentId\": \":studentId\" }"
+    },
+    {
+      "name": "student_journals_empty",
+      "collection": "student_journals",
+      "filter": "{ \"_id\": null }",
+      "find_one": true
+    },
+    {
+      "name": "student_journal",
+      "collection": "student_journals",
+      "filter": "{ \"_id\": \":journalId\" }",
+      "find_one": true
+    },
+    {
+      "name": "current_user_data",
+      "collection": "users",
+      "filter": "{ \"_id\": \"Meteor.userId()\" }",
+      "find_one": true
+    }
+  ]
+}

@@ -8,4 +8,10 @@ meteor-kitchen ~/montessori/scaffold-mpr/mpr.json ~/montessori/mpr --react
 cd ~/montessori/mpr
 meteor
 
+npm install -g json-merger
+json-merger mpr-structure.json --output mpr.json --pretty
 
+
+
+---
+git remote add  upstream git@github.com:kindlespark/scaffold-mpr.git

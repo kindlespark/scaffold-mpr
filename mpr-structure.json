@@ -1,0 +1,19 @@
+{
+  "application": {
+    "title": "MPR v0.0.0.14",
+
+    "theme": "bootswatch-united",
+    "collections": {
+      "$import": "collections/collections.json#/collections"
+    },
+    "queries": {
+      "$import": "queries/queries.json#/queries"
+    },
+    "private_zone": {
+      "$import": "pages/private_zone.json#/private_zone"
+    },
+    "public_zone": {
+      "$import": "pages/public_zone.json#/public_zone"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "activitys",
+  "fields": [
+    {
+      "name": "activity",
+      "title": "Activity",
+      "required": true,
+      "exportable": true
+    },
+    {
+      "name": "subject",
+      "title": "Subject",
+      "exportable": true,
+      "show_in_dataview": true
+    },
+    {
+      "name": "category",
+      "title": "Category",
+      "exportable": true,
+      "show_in_dataview": true
+    }
+  ]
+}
