@@ -39,6 +39,25 @@
       "options": "{}"
     },
     {
+      "name": "teacher_list",
+      "collection": "teachers",
+      "filter": "{}",
+      "options": "{  \"sort\": { \"teacher\": 1 } }"
+    },
+    {
+      "name": "teachers_empty",
+      "collection": "teachers",
+      "filter": "{\"_id\": null}",
+      "find_one": true
+    },
+    {
+      "name": "teacher_details",
+      "collection": "teachers",
+      "find_one": true,
+      "filter": "{ \"_id\": \":teacherId\" }",
+      "options": "{}"
+    },
+    {
       "name": "student_list",
       "collection": "students",
       "filter": {},
