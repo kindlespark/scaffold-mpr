@@ -1,6 +1,6 @@
 {
 	"application": {
-		"title": "MPR v0.0.0.14",
+		"title": "MPR v0.0.1",
 		"theme": "bootswatch-united",
 		"collections": [
 			{
@@ -857,7 +857,7 @@
 					"components": [
 						{
 							"name": "home_jumbotron",
-							"title": "Example application",
+							"title": "Montessori Progress Report",
 							"type": "jumbotron",
 							"text": "<b>This <a href=\"https://www.meteor.com\" target=\"_blank\">Meteor</a> application is made with <a href=\"http://www.meteorkitchen.com\" target=\"_blank\">meteor-kitchen</a> without manual coding.</b><br />It shows how to work with DataViews, Forms with dates and lookup fields, master-detail relations etc.<br />Source code (input file for generator) is <a href=\"https://github.com/perak/kitchen-examples/tree/master/example-students\" target=\"_blank\">here</a>.",
 							"button_title": "Continue &raquo;",
