@@ -1,0 +1,24 @@
+--todo app--
+heroku create todo-v5 --stack cedar --region us --buildpack https://github.com/AdmitHub/meteor-buildpack-horse.git
+heroku git:remote -a todo-v5
+heroku config:set ROOT_URL=http://todo-v5.herokuapp.com
+git push heroku master
+
+--First time setup---
+heroku create mpr-v5 --stack cedar --region us --buildpack https://github.com/AdmitHub/meteor-buildpack-horse.git
+heroku git:remote -a mpr-v5
+heroku config:set ROOT_URL=http://mpr-v5.herokuapp.com
+heroku addons:create mongolab:sandbox
+heroku config | grep MONGODB_URI
+MONGODB_URI: mongodb://heroku_v9kf063f:i54vsceepst4j5etnrr4sqmqgk@ds221115.mlab.com:21115/heroku_v9kf063f
+heroku config:add MONGODB_URI=mongodb://heroku_jn6mr5jg:tbo2kugsu2kko0p5j270v3sb9n@ds221435.mlab.com:21435/heroku_jn6mr5jg
+
+
+--recurring deploys--
+rm -rf ~/montessori/mpr
+json-merger ~/montessori/scaffold-mpr/mpr-structure.json --output ~/montessori/scaffold-mpr/mpr.json --pretty
+
+meteor-kitchen ~/montessori/scaffold-mpr/mpr.json ~/montessori/mpr --react
+cd ~/montessori/mpr
+git remote add  kindlespark git@github.com:kindlespark/mpr.git
+git push kindlespark master

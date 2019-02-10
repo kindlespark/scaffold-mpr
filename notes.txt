@@ -20,3 +20,4 @@ meteor
 
 ---
 git remote add  upstream git@github.com:kindlespark/scaffold-mpr.git
+git remote add  kindlespark git@github.com:kindlespark/mpr.git
