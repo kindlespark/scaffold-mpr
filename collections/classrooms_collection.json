@@ -12,7 +12,32 @@
       "title": "Description",
       "exportable": true,
       "show_in_dataview": false
+    },
+    {
+      "name": "teacherId",
+      "title": "Teacher",
+      "required": true,
+      "input": "select",
+      "lookup_query_name": "teacher_list",
+      "lookup_field": "firstName",
+      "lookup_key": "_id",
+      "show_in_dataview": false,
+      "show_in_read_only_form": false,
+      "exportable": false,
+
+      "join_collection": "teachers",
+      "join_fields": ["firstName"],
+      "join_container": "teacher"
+    },
+
+    {
+      "name": "teacher.firstName",
+      "title": "Teacher",
+      "show_in_insert_form": false,
+      "show_in_update_form": false,
+      "exportable": true
     }
+
   ],
   "owner_field": "ownerId",
 
