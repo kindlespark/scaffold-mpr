@@ -1,0 +1,73 @@
+{
+    "name": "students",
+    "fields": [
+      {
+        "name": "studentNumber",
+        "title": "Student Number",
+        "default": "",
+        "required": true,
+        "exportable": true
+      },
+      {
+        "name": "firstName",
+        "title": "First Name",
+        "default": "",
+        "required": true,
+        "exportable": true
+      },
+      {
+        "name": "middleName",
+        "title": "Middle Name",
+        "default": "",
+        "required": false,
+        "exportable": true
+      },
+      {
+        "name": "lastName",
+        "title": "Last Name",
+        "default": "",
+        "required": true,
+        "exportable": true
+      },
+      {
+        "name": "birthDate",
+        "title": "Birth date",
+        "type": "date",
+        "format": "MM-DD-YYYY",
+        "input": "datepicker",
+        "default": "today",
+        "required": true,
+        "exportable": true
+      },
+
+      {
+        "name": "classroomId",
+        "title": "Classroom",
+        "required": true,
+        "input": "select",
+        "lookup_query_name": "classroom_list",
+        "lookup_field": "name",
+        "lookup_key": "_id",
+        "show_in_dataview": false,
+        "show_in_read_only_form": false,
+        "exportable": false,
+
+        "join_collection": "classrooms",
+        "join_fields": ["name"],
+        "join_container": "classroom"
+      },
+
+      {
+        "name": "classroom.name",
+        "title": "Classroom",
+        "show_in_insert_form": false,
+        "show_in_update_form": false,
+        "exportable": true
+      }
+    ],
+
+    "owner_field": "ownerId",
+    "roles_allowed_to_read": ["owner"],
+    "roles_allowed_to_update": ["owner"],
+    "roles_allowed_to_delete": ["owner"]
+  }

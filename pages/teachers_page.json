@@ -1,0 +1,66 @@
+{
+  "name": "teachers",
+  "components": [
+    {
+      "name": "view",
+      "type": "data_view",
+      "title": "Teachers",
+      "text_if_empty": "No teachers :(",
+      "query_name": "teacher_list",
+      "page_size": 20,
+      "insert_route": "teachers.insert",
+      "edit_route": "teachers.edit",
+      "edit_route_params": [{ "name": "teacherId", "value": "this._id" }],
+      "details_route": "teachers.details",
+      "details_route_params": [{ "name": "teacherId", "value": "this._id" }]
+    }
+  ],
+
+  "pages": [
+    {
+      "name": "insert",
+      "components": [
+        {
+          "name": "insert_form",
+          "type": "form",
+          "mode": "insert",
+          "title": "New teacher",
+          "query_name": "teachers_empty",
+          "submit_route": "teachers",
+          "cancel_route": "teachers"
+        }
+      ]
+    },
+    {
+      "name": "details",
+      "route_params": ["teacherId"],
+      "components": [
+        {
+          "name": "details_form",
+          "type": "form",
+          "mode": "read_only",
+          "title": "Details",
+          "query_name": "teacher_details",
+          "close_route": "teachers",
+          "back_route": "teachers"
+        }
+      ]
+    },
+
+    {
+      "name": "edit",
+      "route_params": ["teacherId"],
+      "components": [
+        {
+          "name": "edit_form",
+          "type": "form",
+          "mode": "update",
+          "title": "Edit teacher",
+          "submit_route": "teachers",
+          "cancel_route": "teachers",
+          "query_name": "teacher_details"
+        }
+      ]
+    }
+  ]
+}
