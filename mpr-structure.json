@@ -3,6 +3,12 @@
     "title": "MPR v0.0.1",
 
     "theme": "bootswatch-united",
+    "copy_files": [
+      { "source": "public", "dest": "PUBLIC_DIR/" },
+      { "source": "client", "dest": "CLIENT_DIR/" }
+    ],
+    "client_startup_source_file": "imports/startup/client-startup.js",
+
     "collections": {
       "$import": "collections/collections.json#/collections"
     },
