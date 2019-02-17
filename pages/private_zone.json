@@ -22,6 +22,9 @@
       {
         "$import": "teachers_page.json"
       },
+      {
+        "$import": "schools_page.json"
+      },
 
       { "name": "logout", "template": "logout" }
     ],
@@ -37,7 +40,9 @@
           { "title": "Students", "route": "students" },
           { "title": "Classrooms", "route": "classrooms" },
           { "title": "Activities", "route": "activitys" },
-          { "title": "Teachers", "route": "teachers" }
+          { "title": "Teachers", "route": "teachers" },
+          { "title": "Schools", "route": "schools" }
+
         ]
       },
       {

@@ -58,25 +58,25 @@
 						"show_in_dataview": false
 					},
 					{
-						"name": "teacherId",
-						"title": "Teacher",
+						"name": "schoolId",
+						"title": "school",
 						"required": true,
 						"input": "select",
-						"lookup_query_name": "teacher_list",
-						"lookup_field": "firstName",
+						"lookup_query_name": "school_list",
+						"lookup_field": "schoolName",
 						"lookup_key": "_id",
 						"show_in_dataview": false,
 						"show_in_read_only_form": false,
 						"exportable": false,
-						"join_collection": "teachers",
+						"join_collection": "schools",
 						"join_fields": [
-							"firstName"
+							"schoolName"
 						],
-						"join_container": "teacher"
+						"join_container": "school"
 					},
 					{
-						"name": "teacher.firstName",
-						"title": "Teacher",
+						"name": "school.schoolName",
+						"title": "School",
 						"show_in_insert_form": false,
 						"show_in_update_form": false,
 						"exportable": true
@@ -228,14 +228,14 @@
 				"name": "teachers",
 				"fields": [
 					{
-						"name": "firstName",
-						"title": "First Name",
-						"required": true,
-						"exportable": true
-					},
-					{
 						"name": "lastName",
 						"title": "Last Name",
+						"exportable": true,
+						"required": true
+					},
+					{
+						"name": "firstName",
+						"title": "First Name",
 						"exportable": true,
 						"show_in_dataview": true
 					},
@@ -245,6 +245,66 @@
 						"exportable": true,
 						"show_in_dataview": true
 					}
+				]
+			},
+			{
+				"name": "schools",
+				"fields": [
+					{
+						"name": "schoolCode",
+						"title": "School Code",
+						"default": "",
+						"required": true,
+						"exportable": true
+					},
+					{
+						"name": "schoolName",
+						"title": "School Name",
+						"default": "",
+						"required": true,
+						"exportable": true
+					},
+					{
+						"name": "schoolAddress",
+						"title": "School Address",
+						"default": "",
+						"required": true,
+						"exportable": true
+					},
+					{
+						"name": "teacherId",
+						"title": "Teacher",
+						"required": true,
+						"input": "select",
+						"lookup_query_name": "teacher_list",
+						"lookup_field": "lastName",
+						"lookup_key": "_id",
+						"show_in_dataview": false,
+						"show_in_read_only_form": false,
+						"exportable": false,
+						"join_collection": "teachers",
+						"join_fields": [
+							"lastName"
+						],
+						"join_container": "teacher"
+					},
+					{
+						"name": "teacher.lastName",
+						"title": "Teacher",
+						"show_in_insert_form": false,
+						"show_in_update_form": false,
+						"exportable": true
+					}
+				],
+				"owner_field": "ownerId",
+				"roles_allowed_to_read": [
+					"owner"
+				],
+				"roles_allowed_to_update": [
+					"owner"
+				],
+				"roles_allowed_to_delete": [
+					"owner"
 				]
 			}
 		],
@@ -341,6 +401,25 @@
 				"collection": "student_journals",
 				"filter": "{ \"_id\": \":journalId\" }",
 				"find_one": true
+			},
+			{
+				"name": "school_list",
+				"collection": "schools",
+				"filter": "{}",
+				"options": "{  \"sort\": { \"school\": 1 } }"
+			},
+			{
+				"name": "schools_empty",
+				"collection": "schools",
+				"filter": "{\"_id\": null}",
+				"find_one": true
+			},
+			{
+				"name": "school_details",
+				"collection": "schools",
+				"find_one": true,
+				"filter": "{ \"_id\": \":schoolId\" }",
+				"options": "{}"
 			},
 			{
 				"name": "current_user_data",
@@ -833,6 +912,84 @@
 					]
 				},
 				{
+					"name": "schools",
+					"components": [
+						{
+							"name": "view",
+							"type": "data_view",
+							"title": "Tchools",
+							"text_if_empty": "No schools :(",
+							"query_name": "school_list",
+							"page_size": 20,
+							"insert_route": "schools.insert",
+							"edit_route": "schools.edit",
+							"edit_route_params": [
+								{
+									"name": "schoolId",
+									"value": "this._id"
+								}
+							],
+							"details_route": "schools.details",
+							"details_route_params": [
+								{
+									"name": "schoolId",
+									"value": "this._id"
+								}
+							]
+						}
+					],
+					"pages": [
+						{
+							"name": "insert",
+							"components": [
+								{
+									"name": "insert_form",
+									"type": "form",
+									"mode": "insert",
+									"title": "New school",
+									"query_name": "schools_empty",
+									"submit_route": "schools",
+									"cancel_route": "schools"
+								}
+							]
+						},
+						{
+							"name": "details",
+							"route_params": [
+								"schoolId"
+							],
+							"components": [
+								{
+									"name": "details_form",
+									"type": "form",
+									"mode": "read_only",
+									"title": "Details",
+									"query_name": "school_details",
+									"close_route": "schools",
+									"back_route": "schools"
+								}
+							]
+						},
+						{
+							"name": "edit",
+							"route_params": [
+								"schoolId"
+							],
+							"components": [
+								{
+									"name": "edit_form",
+									"type": "form",
+									"mode": "update",
+									"title": "Edit school",
+									"submit_route": "schools",
+									"cancel_route": "schools",
+									"query_name": "school_details"
+								}
+							]
+						}
+					]
+				},
+				{
 					"name": "logout",
 					"template": "logout"
 				}
@@ -863,6 +1020,10 @@
 						{
 							"title": "Teachers",
 							"route": "teachers"
+						},
+						{
+							"title": "Schools",
+							"route": "schools"
 						}
 					]
 				},
