@@ -14,25 +14,25 @@
       "show_in_dataview": false
     },
     {
-      "name": "teacherId",
-      "title": "Teacher",
+      "name": "schoolId",
+      "title": "school",
       "required": true,
       "input": "select",
-      "lookup_query_name": "teacher_list",
-      "lookup_field": "firstName",
+      "lookup_query_name": "school_list",
+      "lookup_field": "schoolName",
       "lookup_key": "_id",
       "show_in_dataview": false,
       "show_in_read_only_form": false,
       "exportable": false,
 
-      "join_collection": "teachers",
-      "join_fields": ["firstName"],
-      "join_container": "teacher"
+      "join_collection": "schools",
+      "join_fields": ["schoolName"],
+      "join_container": "school"
     },
 
     {
-      "name": "teacher.firstName",
-      "title": "Teacher",
+      "name": "school.schoolName",
+      "title": "School",
       "show_in_insert_form": false,
       "show_in_update_form": false,
       "exportable": true

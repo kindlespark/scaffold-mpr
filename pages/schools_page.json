@@ -1,0 +1,66 @@
+{
+  "name": "schools",
+  "components": [
+    {
+      "name": "view",
+      "type": "data_view",
+      "title": "Tchools",
+      "text_if_empty": "No schools :(",
+      "query_name": "school_list",
+      "page_size": 20,
+      "insert_route": "schools.insert",
+      "edit_route": "schools.edit",
+      "edit_route_params": [{ "name": "schoolId", "value": "this._id" }],
+      "details_route": "schools.details",
+      "details_route_params": [{ "name": "schoolId", "value": "this._id" }]
+    }
+  ],
+
+  "pages": [
+    {
+      "name": "insert",
+      "components": [
+        {
+          "name": "insert_form",
+          "type": "form",
+          "mode": "insert",
+          "title": "New school",
+          "query_name": "schools_empty",
+          "submit_route": "schools",
+          "cancel_route": "schools"
+        }
+      ]
+    },
+    {
+      "name": "details",
+      "route_params": ["schoolId"],
+      "components": [
+        {
+          "name": "details_form",
+          "type": "form",
+          "mode": "read_only",
+          "title": "Details",
+          "query_name": "school_details",
+          "close_route": "schools",
+          "back_route": "schools"
+        }
+      ]
+    },
+
+    {
+      "name": "edit",
+      "route_params": ["schoolId"],
+      "components": [
+        {
+          "name": "edit_form",
+          "type": "form",
+          "mode": "update",
+          "title": "Edit school",
+          "submit_route": "schools",
+          "cancel_route": "schools",
+          "query_name": "school_details"
+        }
+      ]
+    }
+  ]
+}

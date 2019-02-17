@@ -94,6 +94,25 @@
       "find_one": true
     },
     {
+      "name": "school_list",
+      "collection": "schools",
+      "filter": "{}",
+      "options": "{  \"sort\": { \"school\": 1 } }"
+    },
+    {
+      "name": "schools_empty",
+      "collection": "schools",
+      "filter": "{\"_id\": null}",
+      "find_one": true
+    },
+    {
+      "name": "school_details",
+      "collection": "schools",
+      "find_one": true,
+      "filter": "{ \"_id\": \":schoolId\" }",
+      "options": "{}"
+    },
+    {
       "name": "current_user_data",
       "collection": "users",
       "filter": "{ \"_id\": \"Meteor.userId()\" }",
