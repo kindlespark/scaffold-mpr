@@ -10,9 +10,14 @@
 			{
 				"source": "client",
 				"dest": "CLIENT_DIR/"
+			},
+			{
+				"source": "settings-dev.json",
+				"dest": "OUTPUT_DIR/"
 			}
 		],
 		"client_startup_source_file": "imports/startup/client-startup.js",
+		"login_with_google": true,
 		"collections": [
 			{
 				"name": "activitys",
