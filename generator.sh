@@ -1,3 +1,4 @@
 rm -rf ~/montessori/mpr
-json-merger mpr-structure.json --output mpr.json --pretty
+rm -rf ~/montessori/scaffold-mpr/mpr.json
+json-merger ~/montessori/scaffold-mpr/mpr-structure.json --output ~/montessori/scaffold-mpr/mpr.json --pretty
 meteor-kitchen ~/montessori/scaffold-mpr/mpr.json ~/montessori/mpr --react

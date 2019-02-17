@@ -5,9 +5,12 @@
     "theme": "bootswatch-united",
     "copy_files": [
       { "source": "public", "dest": "PUBLIC_DIR/" },
-      { "source": "client", "dest": "CLIENT_DIR/" }
+      { "source": "client", "dest": "CLIENT_DIR/" },
+      { "source": "settings-dev.json", "dest": "OUTPUT_DIR/" }
     ],
     "client_startup_source_file": "imports/startup/client-startup.js",
+
+    "login_with_google": true,
 
     "collections": {
       "$import": "collections/collections.json#/collections"
