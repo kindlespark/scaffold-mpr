@@ -4,7 +4,7 @@
     {
       "name": "view",
       "type": "data_view",
-      "title": "Tchools",
+      "title": "Schools",
       "text_if_empty": "No schools :(",
       "query_name": "school_list",
       "page_size": 20,
