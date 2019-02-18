@@ -53,25 +53,25 @@
 						"show_in_dataview": false
 					},
 					{
-						"name": "schoolId",
-						"title": "school",
+						"name": "teacherId",
+						"title": "teacher",
 						"required": true,
 						"input": "select",
-						"lookup_query_name": "school_list",
-						"lookup_field": "schoolName",
+						"lookup_query_name": "teacher_list",
+						"lookup_field": "lastName",
 						"lookup_key": "_id",
 						"show_in_dataview": false,
 						"show_in_read_only_form": false,
 						"exportable": false,
-						"join_collection": "schools",
+						"join_collection": "teachers",
 						"join_fields": [
-							"schoolName"
+							"lastName"
 						],
-						"join_container": "school"
+						"join_container": "teacher"
 					},
 					{
-						"name": "school.schoolName",
-						"title": "School",
+						"name": "teacher.lastName",
+						"title": "Teacher",
 						"show_in_insert_form": false,
 						"show_in_update_form": false,
 						"exportable": true
@@ -239,6 +239,30 @@
 						"title": "Email",
 						"exportable": true,
 						"show_in_dataview": true
+					},
+					{
+						"name": "schoolId",
+						"title": "School",
+						"required": true,
+						"input": "select",
+						"lookup_query_name": "school_list",
+						"lookup_field": "schoolName",
+						"lookup_key": "_id",
+						"show_in_dataview": false,
+						"show_in_read_only_form": false,
+						"exportable": false,
+						"join_collection": "schools",
+						"join_fields": [
+							"schoolName"
+						],
+						"join_container": "school"
+					},
+					{
+						"name": "school.schoolName",
+						"title": "school",
+						"show_in_insert_form": false,
+						"show_in_update_form": false,
+						"exportable": true
 					}
 				]
 			},
@@ -264,30 +288,6 @@
 						"title": "School Address",
 						"default": "",
 						"required": true,
-						"exportable": true
-					},
-					{
-						"name": "teacherId",
-						"title": "Teacher",
-						"required": true,
-						"input": "select",
-						"lookup_query_name": "teacher_list",
-						"lookup_field": "lastName",
-						"lookup_key": "_id",
-						"show_in_dataview": false,
-						"show_in_read_only_form": false,
-						"exportable": false,
-						"join_collection": "teachers",
-						"join_fields": [
-							"lastName"
-						],
-						"join_container": "teacher"
-					},
-					{
-						"name": "teacher.lastName",
-						"title": "Teacher",
-						"show_in_insert_form": false,
-						"show_in_update_form": false,
 						"exportable": true
 					}
 				],
@@ -912,7 +912,7 @@
 						{
 							"name": "view",
 							"type": "data_view",
-							"title": "Tchools",
+							"title": "Schools",
 							"text_if_empty": "No schools :(",
 							"query_name": "school_list",
 							"page_size": 20,

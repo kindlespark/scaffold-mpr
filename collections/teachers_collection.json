@@ -18,7 +18,31 @@
         "title": "Email",
         "exportable": true,
         "show_in_dataview": true
-      }
+      },
+      {
+        "name": "schoolId",
+        "title": "School",
+        "required": true,
+        "input": "select",
+        "lookup_query_name": "school_list",
+        "lookup_field": "schoolName",
+        "lookup_key": "_id",
+        "show_in_dataview": false,
+        "show_in_read_only_form": false,
+        "exportable": false,
+  
+        "join_collection": "schools",
+        "join_fields": ["schoolName"],
+        "join_container": "school"
+      },
+  
+      {
+        "name": "school.schoolName",
+        "title": "school",
+        "show_in_insert_form": false,
+        "show_in_update_form": false,
+        "exportable": true
+      }  
     ]
   }
   
