@@ -9,7 +9,7 @@
             "name": "home_jumbotron",
             "title": "Montessori Progress Report",
             "type": "jumbotron",
-            "text": "<b>This <a href=\"https://www.meteor.com\" target=\"_blank\">Meteor</a> application is made with <a href=\"http://www.meteorkitchen.com\" target=\"_blank\">meteor-kitchen</a> without manual coding.</b><br />It shows how to work with DataViews, Forms with dates and lookup fields, master-detail relations etc.<br />Source code (input file for generator) is <a href=\"https://github.com/perak/kitchen-examples/tree/master/example-students\" target=\"_blank\">here</a>.",
+            "text": "<b>The Montessori Method of education developed by Maria Montessori, is a child-centered educational approach based on scientific observations of children. </b><br />The Montessori method views the child as one who is naturally eager for knowledge and capable of initiating learning in a supportive, thoughtfully prepared learning environment. It attempts to develop children physically, socially, emotionally and cognitively.<br />",
             "button_title": "Continue &raquo;",
             "button_route": "login"
           }
