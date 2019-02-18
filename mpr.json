@@ -14,6 +14,14 @@
 			{
 				"source": "settings-dev.json",
 				"dest": "OUTPUT_DIR/"
+			},
+			{
+				"source": "imports",
+				"dest": "OUTPUT_DIR/imports"
+			},
+			{
+				"source": "settings-local.json",
+				"dest": "OUTPUT_DIR/"
 			}
 		],
 		"client_startup_source_file": "imports/startup/client-startup.js",
