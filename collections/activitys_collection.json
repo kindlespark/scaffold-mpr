@@ -12,12 +12,6 @@
       "title": "Subject",
       "exportable": true,
       "show_in_dataview": true
-    },
-    {
-      "name": "category",
-      "title": "Category",
-      "exportable": true,
-      "show_in_dataview": true
     }
   ]
 }

@@ -1,0 +1,67 @@
+{
+    "name": "subjects",
+    "components": [
+      {
+        "name": "view",
+        "type": "data_view",
+        "title": "Subjects",
+        "text_if_empty": "No subject :(",
+        "query_name": "subject_list",
+        "page_size": 20,
+        "insert_route": "subjects.insert",
+        "edit_route": "subjects.edit",
+        "edit_route_params": [{ "name": "subjectId", "value": "this._id" }],
+        "details_route": "subjects.details",
+        "details_route_params": [{ "name": "subjectId", "value": "this._id" }]
+      }
+    ],
+  
+    "pages": [
+      {
+        "name": "insert",
+        "components": [
+          {
+            "name": "insert_form",
+            "type": "form",
+            "mode": "insert",
+            "title": "New subject",
+            "query_name": "subjects_empty",
+            "submit_route": "subjects",
+            "cancel_route": "subjects"
+          }
+        ]
+      },
+      {
+        "name": "details",
+        "route_params": ["subjectId"],
+        "components": [
+          {
+            "name": "details_form",
+            "type": "form",
+            "mode": "read_only",
+            "title": "Details",
+            "query_name": "subject_details",
+            "close_route": "subjects",
+            "back_route": "subjects"
+          }
+        ]
+      },
+  
+      {
+        "name": "edit",
+        "route_params": ["subjectId"],
+        "components": [
+          {
+            "name": "edit_form",
+            "type": "form",
+            "mode": "update",
+            "title": "Edit subject",
+            "submit_route": "subjects",
+            "cancel_route": "subjects",
+            "query_name": "subject_details"
+          }
+        ]
+      }
+    ]
+  }
+  

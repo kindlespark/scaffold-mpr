@@ -14,6 +14,9 @@
         "$import": "activitys_page.json"
       },
       {
+        "$import": "subjects_page.json"
+      },
+      {
         "$import": "students_page.json"
       },
       {
@@ -40,6 +43,7 @@
           { "title": "Students", "route": "students" },
           { "title": "Classrooms", "route": "classrooms" },
           { "title": "Activities", "route": "activitys" },
+          {"title":"Subjects", "route":"subjects"},
           { "title": "Teachers", "route": "teachers" },
           { "title": "Schools", "route": "schools" }
 

@@ -7,6 +7,9 @@
       "$import": "classrooms_collection.json"
     },
     {
+      "$import" : "subject_collection.json"
+    },
+    {
       "$import": "students_collection.json"
     },
     {

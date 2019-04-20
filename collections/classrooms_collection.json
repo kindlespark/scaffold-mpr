@@ -19,19 +19,19 @@
       "required": true,
       "input": "select",
       "lookup_query_name": "teacher_list",
-      "lookup_field": "lastName",
+      "lookup_field": "firstName",
       "lookup_key": "_id",
       "show_in_dataview": false,
       "show_in_read_only_form": false,
       "exportable": false,
 
       "join_collection": "teachers",
-      "join_fields": ["lastName"],
+      "join_fields": ["firstName"],
       "join_container": "teacher"
     },
 
     {
-      "name": "teacher.lastName",
+      "name": "teacher.firstName",
       "title": "Teacher",
       "show_in_insert_form": false,
       "show_in_update_form": false,
