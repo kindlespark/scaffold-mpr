@@ -2,16 +2,16 @@
     "name": "teachers",
     "fields": [
       {
-        "name": "lastName",
-        "title": "Last Name",
-        "exportable": true,
-        "required": true
-      },
-      {
         "name": "firstName",
         "title": "First Name",
         "exportable": true,
         "show_in_dataview": true
+      },
+      {
+        "name": "lastName",
+        "title": "Last Name",
+        "exportable": true,
+        "required": true
       },
       {
         "name": "email",
