@@ -117,25 +117,6 @@
       "collection": "users",
       "filter": "{ \"_id\": \"Meteor.userId()\" }",
       "find_one": true
-    },
-    {
-      "name": "subject_list",
-      "collection": "subjects",
-      "filter": "{}",
-      "options": "{  \"sort\": { \"subject\": 1 } }"
-    },
-    {
-      "name": "subjects_empty",
-      "collection": "subjects",
-      "filter": "{\"_id\": null}",
-      "find_one": true
-    },
-    {
-      "name": "subject_details",
-      "collection": "subjects",
-      "find_one": true,
-      "filter": "{ \"_id\": \":subjectId\" }",
-      "options": "{}"
     }
   ]
 }
