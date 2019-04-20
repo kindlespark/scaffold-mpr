@@ -2,10 +2,20 @@
   "name": "student_journals",
   "fields": [
     {
-      "name": "subject",
+      "name": "subjectId",
       "title": "Subject",
       "required": true,
-      "exportable": true
+      "input": "select",
+      "lookup_query_name": "subject_list",
+      "lookup_field": "subject",
+      "lookup_key": "_id",
+      "show_in_dataview": false,
+      "show_in_read_only_form": false,
+      "exportable": false,
+
+      "join_collection": "subjects",
+      "join_fields": ["subject"],
+      "join_container": "subject"
     },
     {
       "name": "activityId",
