@@ -1,6 +1,7 @@
 {
   "application": {
     "title": "MPR v0.0.3",
+
     "theme": "bootswatch-united",
     "copy_files": [
       { "source": "public", "dest": "PUBLIC_DIR/" },
